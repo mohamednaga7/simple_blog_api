@@ -5,7 +5,6 @@ import { BaseException } from '../../Exceptions/BaseException';
 import { UserModel } from '../../models/user.model';
 import { sign } from 'jsonwebtoken';
 import { RequestUserDTO } from '../../shared/dtos/RequestUserDTO';
-import { plainToInstance } from 'class-transformer';
 
 const router = Router();
 
@@ -43,7 +42,7 @@ router.post('/register', async (req: BaseRequest<SignUpDTO>, res: Response) => {
 
 		const requestUser = new RequestUserDTO(user.toObject());
 
-		const token = sign({ ...requestUser }, process.env.JWT_SECRET!);
+		const token = sign(requestUser.toObject(), process.env.JWT_SECRET!);
 
 		return res.json({
 			token,

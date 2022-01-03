@@ -17,4 +17,8 @@ export class RequestUserDTO implements RequestUserDTO {
 		this._id = _id;
 		this.phoneNumber = phoneNumber;
 	}
+
+	toObject() {
+		return { ...this };
+	}
 }

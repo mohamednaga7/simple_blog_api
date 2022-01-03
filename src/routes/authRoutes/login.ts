@@ -47,7 +47,7 @@ router.post('/login', async (req: BaseRequest<SignInDTO>, res: Response) => {
 
 		const requestUser = new RequestUserDTO(user.toObject());
 
-		const token = sign({ ...requestUser }, process.env.JWT_SECRET!);
+		const token = sign(requestUser.toObject(), process.env.JWT_SECRET!);
 
 		return res.json({
 			token,
